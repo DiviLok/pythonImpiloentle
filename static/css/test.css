@@ -1,0 +1,89 @@
+/* test change language */
+
+*[lang="en"] {
+    direction: ltr;
+    text-align: left;
+  }
+  
+  button {
+    background: 0;
+    border: 0;
+    background-color: #2e2e2e;
+    color: #fff;
+    padding: 20px 20px;
+    min-width: 320px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: inherit;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+  }
+  
+  button:hover {
+    background-color: #444;
+  }
+  
+  h1 {
+    font-size: 32px;
+    color: #2e2e2e;
+    font-family: Arial, sans-serif;
+  }
+  
+  p, small {
+    font-size: 18px;
+    color: #2e2e2e;
+    font-family: Verdana, sans-serif;
+  }
+  
+  small {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  button.change-language {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .main {
+    transition: all .5s;
+  }
+  
+  .section-anim, .section-anim-rtl {
+    animation-duration: .5s;
+    animation-timing-function: ease-out;
+  }
+  
+  .section-anim {
+    animation-name: sectionAnim;
+  }
+  
+  .section-anim-rtl {
+    animation-name: sectionAnimRTL;
+  }
+  
+  @keyframes sectionAnim {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes sectionAnimRTL {
+    0% {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }

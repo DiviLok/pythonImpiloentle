@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>AutoplayTest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./css/test.css" />
+    <script defer="defer" src="./js/autoplay.js"> </script>
+    <link rel="feature" href="./js/autoplay.js" />
+    <style>
+        p {
+            display: block;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+    </style>
+<script defer="defer" src="./js/languagechange.js"> </script>
+<link rel="feature" href="./js/languagechange.js"/>
+</head>
+
+<body>
+<section style="display: none;" class="main" lang="xh">
+
+   <div id="navbar" class="main">
+      <button class="change-language" type="button">Change language</button>
+      <ul>
+         <li><a  data-field="Home" class="active" href="index.html"></a></li>
+         <li ><a data-field="Videos" href="catergories.html"></a></li>
+         <li ><a data-field="Pictures" href="pictures.html"></a></li>
+         <li ><a data-field="About" href="about.html"></a></li>
+         <li ><a data-field="Autoplay" href="autoplay.html"></a></li>
+      </ul>
+  </div>
+  </section>
+
+
+    <!-- <nav id="equalizer">
+        <a href="#" data-ref="harder">Beats</a>
+        <a href="#" data-ref="better">Samples</a>
+        <a href="#" data-ref="faster">Loops</a>
+        <a href="#" data-ref="stronger">Rhythms</a>
+        <a href="#" data-ref="harder">Beats</a>
+    </nav> -->
+    <a href="#" data-ref="harder">Beats</a>
+    <a href="#" data-ref="better">Samples</a>
+    <a href="#" data-ref="bgvid">Samples</a>
+    <a href="#" data-ref="test">Samples</a>
+    <!-- <audio preload="auto" id="harder" src="./audios/Nutrition1.mp3"></audio>
+    <audio preload="auto" id="better" src="./audios/Nutrition1.mp3"></audio>
+    <audio preload="auto" id="faster" src="./audios/Nutrition1.mp3"></audio>
+    <audio preload="auto" id="stronger" src="./audios/Nutrition1.mp3"></audio> -->
+
+    <audio preload="auto" webkit-playinline="true" muted=false autoplay="true" id="harder"
+        src="audios/Nutrition1.mp3"></audio>
+    <audio preload="auto" webkit-playinline="true" muted=false autoplay="true" id="better"
+        src="audios/horse.ogv"></audio>
+
+    <audio id="bgvid" webkit_playsinline="true" autoplay="true" muted="false">
+        <source src="audios/Nutrition1.mp3" type="audio/mp3">
+
+    </audio>
+    <audio id="test">
+        <source src="audios/Nutrition1.mp3">
+    </audio>
+
+    <audio id="equalizer" controls preload="metadata">
+        <source src="audios/Nutrition1.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- HTML -->
+    <audio id="MyAudioElement" autoplay>
+        <source src="audios/Nutrition1.mp3" type="audio/mp3">
+    </audio>
+
+    
+
+
+
+    <!-- <video id="myVideo" controls autoplay>
+        <source id="mp4_src" src="videos/Imifuno neziqhamo (Nutrition Fruits and Vegetables).mp4" type="video/mp4">
+      </video>
+
+      <script> 
+        function myFunction() { 
+          document.getElementById("mp4_src").src = "movie.mp4";
+          document.getElementById("myVideo").load();
+        } 
+        </script>  -->
+
+    <!-- <video webkit-playinline="true" autoplay="" muted=true autoplay="true" src="./videos/Imifuno neziqhamo (Nutrition Fruits and Vegetables).mp4"></video> -->
+    <!-- <source src="http://thenewcode.com/312/Electronica-Site-Navigation-Part-2-HTML5-Audio-Events"> -->
+
+
+</body>
+
+</html>
