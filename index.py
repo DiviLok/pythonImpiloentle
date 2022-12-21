@@ -29,6 +29,11 @@ def about():
 @app.route('/pictures')
 def pictures():
     return render_template('pictures.html')
+    
+@app.route('/admin')
+def login():
+    return render_template('login.html')
+
 
 if __name__ == '__main__':
     app.run()
