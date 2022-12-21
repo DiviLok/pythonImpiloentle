@@ -1,0 +1,80 @@
+/* CSS styles */
+.add-video-form {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin-left: 50px;
+  margin-top: 50px;
+  align-items: normal;
+  padding-top: 4rem;
+  border-radius: 5px;
+  background-color: #c4f7dcce;
+  padding: 20px;
+}
+
+.add-video-form label {
+  margin-bottom: 0.5em;
+  margin-top: 0.5rem;
+}
+
+.add-video-form select,
+.add-video-form input[type="text"]
+ {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-video-form input[type="file"] {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.add-video-form button[type="submit"] {
+  width: 7rem;
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  background-color: #40bf80;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.add-video-form button[type=submit]:hover {
+  background-color: #183628;
+}
+
+.video-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.video-list .video {
+  width: 30%;
+  margin: 0.5%;
+  background-color: #eee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.video-list .video img {
+  width: 100%;
+}
+
+.video-list .video .title {
+  padding: 0.5em;
+  font-size: 1.2em;
+}
+
+.video-list .video .category {
+  padding: 0.5em;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #999;
+}

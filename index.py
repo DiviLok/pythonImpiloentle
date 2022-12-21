@@ -38,7 +38,36 @@ def autoplay():
 def adminpage():
     return render_template('adminpage.html')
 
+# add video in the database/////////////////////////////////////////
 
+# videos = []  # Store the videos in a list
+
+# @app.route('/autoplay')
+# def autoplay():
+#     # Get the list of categories
+#     categories = get_categories()
+#     return render_template('autoplay.html', categories=categories)
+
+# @app.route('/add_video', methods=['GET', 'POST'])
+# def add_video():
+#     if request.method == 'POST':
+#         # Get the form data
+#         title = request.form['title']
+#         category = request.form['category']
+#         video_file = request.files['video_file']
+
+#         # Save the video file to the server
+#         video_file.save(os.path.join('path/to/save/location', video_file.filename))
+
+#         # Add the video to the list
+#         videos.append({
+#             'title': title,
+#             'category': category,
+#             'filename': video_file.filename
+#         })
+
+#         # Redirect to the dashboard page
+#         return redirect('/autoplay')
 
 
 

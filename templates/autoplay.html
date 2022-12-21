@@ -2,8 +2,25 @@
 {% block content %}
 
 <div>
-    
-</div>
+   
+    <form class="add-video-form" method="post" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
+        <label for="video-file">Video file:</label>
+        <input type="file" id="video-file" name="video-file">
+        <label for="category">Category:</label>
+        <select id="category-list" name="category">
+            <option value="category1">Pregnancy</option>
+            <option value="category2">Nutrition</option>
+            <option value="category3">newMothers</option>
+        </select>
+       
+        <button type="submit">Add video</button>
+    </form>
+
+    <div class="video-categories">
+
+    </div>
 
 
-{% endblock %}
+    {% endblock %}
