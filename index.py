@@ -29,11 +29,20 @@ def about():
 @app.route('/pictures')
 def pictures():
     return render_template('pictures.html')
-    
-@app.route('/admin')
-def login():
-    return render_template('login.html')
+
+@app.route('/autoplay')
+def autoplay():
+    return render_template('autoplay.html')
+
+@app.route('/adminpage')
+def adminpage():
+    return render_template('adminpage.html')
+
+
+
 
 
 if __name__ == '__main__':
     app.run()
+
+
