@@ -1,43 +1,55 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 import hashlib
 
 app = Flask(__name__)
+#session.get('status', "false") = "false"
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    return render_template('home.html',loggedin=session.get('status', "false"))
 
 @app.route('/videos')
 def catergories():
-    return render_template('categories.html')
+    return render_template('categories.html',loggedin=session.get('status', "false"))
     
 @app.route('/nutrition')
 def nutrition():
-    return render_template('nutrition.html')
+    return render_template('nutrition.html',loggedin=session.get('status', "false"))
 
 @app.route('/newMothers')
 def newMothers():
-    return render_template('newMothers.html')
+    return render_template('newMothers.html',loggedin=session.get('status', "false"))
 
 @app.route('/prgnancyvideos')
 def prgnancyvideos():
-    return render_template('prgnancyvideos.html')
+    return render_template('prgnancyvideos.html',loggedin=session.get('status', "false"))
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html',loggedin=session.get('status', "false"))
 
 @app.route('/pictures')
 def pictures():
-    return render_template('pictures.html')
+    return render_template('pictures.html',loggedin=session.get('status', "false"))
 
 @app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html')
+def dashboard(): 
+  if 'username' in session:
+    return render_template('dashboard.html',loggedin=session.get('status', "false"))
+  else:
+    return redirect('/loginpage')
+  
 
 @app.route('/adminpage')
 def adminpage():
-    return render_template('adminpage.html')
+    return render_template('adminpage.html',loggedin=session.get('status', "false"))
+
+@app.route('/logout')
+def logout():
+    # Remove the session ID
+    session['status']='false'
+    session.pop('username', None)
+    return redirect('/loginpage')
 
 # add video in the database/////////////////////////////////////////
 
@@ -69,6 +81,7 @@ def adminpage():
 
 #         # Redirect to the dashboard page
 #         return redirect('/autoplay')
+
 # login credentials
  
 
@@ -79,6 +92,8 @@ def create_account(username, password):
   # Save the username and hashed password to a file
   with open('credentials.txt', 'a') as f:
     f.write(f'{username},{hashed_password}\n')
+
+app.secret_key = 'your secret key'
 
 def login(username, password):
   # Hash the password
@@ -94,24 +109,24 @@ def login(username, password):
 
 @app.route('/loginpage')
 def loginpage():
-  return render_template('login.html')
+  msg = ""
+  if session.get('attempt') == "Failed":
+    msg = "Login attempt failed. Check your username/password"
+  return render_template('login.html',loggedin=session.get('status','false'), msg=msg)
 
 @app.route('/login', methods=['POST'])
-def login():
+def loginform():
   username = request.form['username']
   password = request.form['password']
 
   if login(username, password):
-    # Login successful
-    return redirect('/dashboard')
-  else:
-    # Login failed
-    return redirect('/loginpage')
+     # Login successful
+    session['username'] = username
+    session['status'] = 'true'
+  
+  session['attempt'] = "Failed"
 
-@app.route('/dashboard')
-def dashboard():
-  return 'Welcome to the dashboard!'
-
+  return redirect('/dashboard')
 
 # Test the functions
 """ create_account('user1', 'password1')
@@ -120,7 +135,6 @@ create_account('user2', 'password2')
 print(login('user1', 'password1'))  # True
 print(login('user1', 'wrong_password'))  # False
 print(login('wrong_username', 'password1'))  # False """
-
 
 
 if __name__ == '__main__':

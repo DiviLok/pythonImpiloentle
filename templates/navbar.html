@@ -12,6 +12,7 @@
    <!-- <script defer="defer" src="/static/js/autoplay.js"> </script> -->
    <link rel="feature" href="/static/js/languagechange.js" />
    <link rel="stylesheet" href="/static/css/dashboard.css">
+   <link rel="stylesheet" href="/static/css/login.css">
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
@@ -26,8 +27,13 @@
             <li><a data-field="Videos" href="/videos"></a></li>
             <li><a data-field="Pictures" href="/pictures"></a></li>
             <li><a data-field="About" href="/about"></a></li>
+            {% if loggedin == "true" %}
             <li><a data-field="Dashboard" href="/dashboard"></a></li>
-            <li><a data-field="Autoplay" href="/autoplay"></a></li>
+            <li><a class="float-right" href="/logout">logout</a></li>
+            {% endif %}
+            {% if loggedin == "false" %}
+            <li><a data-field="Login" class="float-right" href="/loginpage"></a></li>
+            {% endif %}
             <li><a class="float-right" href="/adminpage">AdminPage</a></li>
             <li><button class="change-language" type="button">Change language</button></li>
          </ul>
