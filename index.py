@@ -30,9 +30,9 @@ def about():
 def pictures():
     return render_template('pictures.html')
 
-@app.route('/autoplay')
-def autoplay():
-    return render_template('autoplay.html')
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
 
 @app.route('/adminpage')
 def adminpage():

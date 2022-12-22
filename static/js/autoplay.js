@@ -1,24 +1,32 @@
-const form = document.getElementById('add-video-form');
-  form.addEventListener('submit', event => {
-    event.preventDefault();
 
-    const formData = new FormData(form);
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/add_video');
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        alert('Video added successfully!');
-      } else {
-        alert('Error adding video');
+// function playtrack() {
+//     var track = document.querySelector("#"+this.dataset.ref);
+//     track.play();
+//     }
+//     function triggertrack(element) {
+//     element.addEventListener('mouseover', playtrack, false);
+//     }
+//     var musictriggers = [].slice.call(document.querySelectorAll("#equalizer audio"));
+//     musictriggers.forEach(triggertrack);
+
+
+
+Audio.prototype.play = (function(play) {
+    return function () {
+      var audio = this,
+          args = arguments,
+          promise = play.apply(audio, args);
+      if (promise !== undefined) {
+        promise.catch(_ => {
+          // Autoplay was prevented. This is optional, but add a button to start playing.
+          var el = document.createElement("button");
+          el.innerHTML = "Play";
+          el.addEventListener("click", function(){play.apply(audio, args);});
+          this.parentNode.insertBefore(el, this.nextSibling)
+        });
       }
     };
-    xhr.send(formData);
-  });
-
-  // to add new category to dropdown button
-  const selectElement = document.getElementById("category-list");
-  const newOption = document.createElement("option");
-  newOption.value = "category4";
-  newOption.text = "Category 4";
-  selectElement.options.add(newOption);
-  
+    })(Audio.prototype.play);
+    
+    // Try automatically playing our audio via script. This would normally trigger and error.
+    document.getElementById('MyAudioElement').play()
