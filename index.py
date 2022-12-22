@@ -1,88 +1,116 @@
 from flask import Flask, render_template, request, redirect, session
 import hashlib
+import os
+import shutil
+from bs4 import BeautifulSoup
+import cgi
 
 app = Flask(__name__)
-#session.get('status', "false") = "false"
+# session.get('status', "false") = "false"
+
 
 @app.route('/')
 def index():
-    return render_template('home.html',loggedin=session.get('status', "false"))
+    return render_template('home.html', loggedin=session.get('status', "false"))
+
 
 @app.route('/videos')
 def catergories():
-    return render_template('categories.html',loggedin=session.get('status', "false"))
-    
+    return render_template('categories.html', loggedin=session.get('status', "false"))
+
+
 @app.route('/nutrition')
 def nutrition():
-    return render_template('nutrition.html',loggedin=session.get('status', "false"))
+    return render_template('nutrition.html', loggedin=session.get('status', "false"))
+
 
 @app.route('/newMothers')
 def newMothers():
-    return render_template('newMothers.html',loggedin=session.get('status', "false"))
+    return render_template('newMothers.html', loggedin=session.get('status', "false"))
+
 
 @app.route('/prgnancyvideos')
 def prgnancyvideos():
-    return render_template('prgnancyvideos.html',loggedin=session.get('status', "false"))
+    return render_template('prgnancyvideos.html', loggedin=session.get('status', "false"))
+
 
 @app.route('/about')
 def about():
-    return render_template('about.html',loggedin=session.get('status', "false"))
+    return render_template('about.html', loggedin=session.get('status', "false"))
+
 
 @app.route('/pictures')
 def pictures():
-    return render_template('pictures.html',loggedin=session.get('status', "false"))
+    return render_template('pictures.html', loggedin=session.get('status', "false"))
+
 
 @app.route('/dashboard')
-def dashboard(): 
+def dashboard():
   if 'username' in session:
-    return render_template('dashboard.html',loggedin=session.get('status', "false"))
+    return render_template('dashboard.html', loggedin=session.get('status', "false"))
   else:
     return redirect('/loginpage')
-  
+
 
 @app.route('/adminpage')
 def adminpage():
-    return render_template('adminpage.html',loggedin=session.get('status', "false"))
+    return render_template('adminpage.html', loggedin=session.get('status', "false"))
+
 
 @app.route('/logout')
 def logout():
     # Remove the session ID
-    session['status']='false'
+    session['status'] = 'false'
     session.pop('username', None)
     return redirect('/loginpage')
 
 # add video in the database/////////////////////////////////////////
 
-# videos = []  # Store the videos in a list
 
-# @app.route('/autoplay')
-# def autoplay():
-#     # Get the list of categories
-#     categories = get_categories()
-#     return render_template('autoplay.html', categories=categories)
+videos = []  # Store the videos in a list
 
-# @app.route('/add_video', methods=['GET', 'POST'])
-# def add_video():
-#     if request.method == 'POST':
-#         # Get the form data
-#         title = request.form['title']
-#         category = request.form['category']
-#         video_file = request.files['video_file']
 
-#         # Save the video file to the server
-#         video_file.save(os.path.join('path/to/save/location', video_file.filename))
+@app.route('/add_video', methods=['POST', 'GET'])
+def add_video():
+          
+  #  category=['category1' , 'category2' , 'category3']
+   source_path = "/videos"
+   soup = BeautifulSoup('dashboard.html', 'html.parser')
+   if request.method == 'POST':
+        # Get the form data
+###Has Error of getting data from form /////////
+        form = cgi.FieldStorage()
+        title = form.getvalue('title')
+        category = form.getvalue('category')
+        video_file = form.getfile('video_file')
+        # title = request.form['title']
+        # category = request.form['category']
+        # video_file = request.form['video_file']
+        option_tag = form.soup.find('option')
+        option_value = form.option_tag.get('value')
 
-#         # Add the video to the list
-#         videos.append({
-#             'title': title,
-#             'category': category,
-#             'filename': video_file.filename
-#         })
+###Has Error of getting data from form /////////
+        
+        if option_value == 'category1':
+           destination_path = '/videos/Intsholongwane ka gawulayo ukhulelwe (HIV)'
+           shutil.copy(source_path, destination_path)
+           video_file.save(os.path.join('prgnancyvideos.html', video_file.filename))
+           return render_template('prgnancyvideos.html', title=title)
 
-#         # Redirect to the dashboard page
-#         return redirect('/autoplay')
+        elif  option_value == 'category2':
+           destination_path = 'videos/Nutrition'
+           shutil.copy(source_path, destination_path)
+           video_file.save(os.path.join('nutrition.html', video_file.filename))
 
-# login credentials
+           # Add the video to the list
+        videos.append({
+            'title': title,
+            'category': category,
+            'filename': video_file.filename
+            })
+        return redirect ('/dashboard')
+   
+##ADD Video /////////////////////////////////////////////
  
 
 def create_account(username, password):

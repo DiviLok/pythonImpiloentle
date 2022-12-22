@@ -22,7 +22,7 @@ body{
 .parent-div 
 {      
  width: 95%;
- background-color: #40bf80;
+ background-color: #728eb7;
  border-radius: 2%;
  margin-top: 2%;
  left: 2%;
@@ -36,7 +36,7 @@ width: 8%;
 position: relative;
 border: none;
 left: -5%;
-background-color: #40bf80;
+background-color: #728eb7;
 }
 
 /* Style The Dropdown Button */
@@ -76,7 +76,8 @@ margin-left: 7px;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #40bf80}
+.dropdown-content a:hover {background-color: #728eb7;
+border-radius: 2rem;}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -85,7 +86,7 @@ margin-left: 7px;
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
- background-color: #40bf80;
+ background-color: #728eb7;
 }
 
 .searchBar {
@@ -228,7 +229,8 @@ margin-left: 7px;
   
  #navbar ul li a:hover { 
    color: #d9f2e6; 
-   background-color: #40bf80;
+   background-color: #728eb7;
+   border-radius: 1rem;
    /* text-shadow: #0d261a; */
     
    } 
@@ -347,10 +349,11 @@ margin-left: 7px;
   background-color: #728eb7;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 1rem;
   cursor: pointer;
   margin: 0 0;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .about-text{
