@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
+import hashlib
 
 app = Flask(__name__)
 
@@ -68,6 +69,57 @@ def adminpage():
 
 #         # Redirect to the dashboard page
 #         return redirect('/autoplay')
+# login credentials
+ 
+
+def create_account(username, password):
+  # Hash the password
+  hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+  # Save the username and hashed password to a file
+  with open('credentials.txt', 'a') as f:
+    f.write(f'{username},{hashed_password}\n')
+
+def login(username, password):
+  # Hash the password
+  hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+  # Check if the username and password match a stored credential
+  with open('credentials.txt', 'r') as f:
+    for line in f:
+      stored_username, stored_password = line.strip().split(',')
+      if stored_username == username and stored_password == hashed_password:
+        return True
+    return False
+
+@app.route('/loginpage')
+def loginpage():
+  return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+  username = request.form['username']
+  password = request.form['password']
+
+  if login(username, password):
+    # Login successful
+    return redirect('/dashboard')
+  else:
+    # Login failed
+    return redirect('/loginpage')
+
+@app.route('/dashboard')
+def dashboard():
+  return 'Welcome to the dashboard!'
+
+
+# Test the functions
+""" create_account('user1', 'password1')
+create_account('user2', 'password2')
+
+print(login('user1', 'password1'))  # True
+print(login('user1', 'wrong_password'))  # False
+print(login('wrong_username', 'password1'))  # False """
 
 
 

@@ -5,10 +5,11 @@ var languages = {
         Pictures: "pictures",
         About: "about",
         // Autoplay: "autoplay",
+        Dashboard: "dashboard",
         Download_Videos_Here: "Download Videos here",
         Dashboard:"dashboard",
         About_1: "The Philani Maternal, Child Health and Nutrition Trust has been addressing maternal, child health and nutrition problems in the informal settlements surrounding Cape Town since 1979. Philani's mandate is sustainable community health, and, over the years, we have developed programmes to meet the needs of the communities we serve. As an organisation we aim to improve health outcomes by combining our skills and resources with the knowledge and resources that exist in the community.",
-        About_2: "This web application is a pilot study financed by <a href=\"https://www.sasuf.org/\">SASUF</a> to distribute health information made by students (Magnus Hansson and Carolin Gull) and <a href=\"mailto:william.jobe@hv.se\">Dr. William Jobe</a> at University West in Trollhättan, Sweden as part of a research project headed by Stellenbosch University in cooperation with <a href=\"mailto:linnea.stansert@gmail.com\">Linnea Stansert Katzen</a> and <a href=\"mailto:karlleroux@gmail.com\">Dr. Karl Le Roux</a>. Please feel free to contact any of us with questions and/or comments."
+        About_2: "This web application is a pilot study financed by <a href=\"https://www.sasuf.org/\">SASUF</a> to distribute health information made by students (Magnus Hansson and Carolin Gull) and <a href=\"mailto:william.jobe@hv.se\">Dr. William Jobe</a> at University West in Trollhättan, Sweden as part of a research project headed by Stellenbosch University in cooperation with <a href=\"mailto:linnea.stansert@gmail.com\">Linnea Stansert Katzen</a> and <a href=\"mailto:karlleroux@gmail.com\">Dr. Karl Le Roux</a>. Please feel free to contact any of us with questions and/or comments.",
     },
     xh: {
         Home: "Ekhaya",
@@ -16,6 +17,7 @@ var languages = {
         Pictures: "Imifanekiso",
         About: "Malunga",
         // Autoplay: "Iyazidlalela",
+        Dashboard: "kwideshibhodi",
         Download_Videos_Here: "Khuphela iividiyo apha",
         Dashboard:"dashboard",
         About_1: "I-Philani Maternal, Child Health and Nutrition Trust ibilungisa iingxaki zoomama, impilo yabantwana kunye nesondlo kumatyotyombe angqonge iKapa ukusukela ngo-1979. Umyalelo kaPhilani yimpilo yoluntu ezinzileyo, kwaye, ekuhambeni kweminyaka, siye saqulunqa iinkqubo zokuhlangabezana neemfuno zoluntu esilusebenzelayo. Njengombutho sijolise ekuphuculeni iziphumo zempilo ngokudibanisa izakhono kunye nezibonelelo zethu kunye nolwazi kunye nezibonelelo ezikhoyo kuluntu.",

@@ -1,0 +1,32 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+
+    <a href="#" data-ref="harder">Beats</a>
+    <a href="#" data-ref="better">Samples</a>
+    <a href="#" data-ref="bgvid">Samples</a>
+    <a href="#" data-ref="test">Samples</a>
+
+    <audio preload="auto" webkit-playinline="true" muted=false autoplay="true" id="harder"
+        src="audios/Nutrition1.mp3"></audio>
+    <audio preload="auto" webkit-playinline="true" muted=false autoplay="true" id="better"
+        src="audios/horse.ogv"></audio>
+
+    <audio id="bgvid" webkit_playsinline="true" autoplay="true" muted="false">
+        <source src="audios/Nutrition1.mp3" type="audio/mp3">
+
+    </audio>
+    <audio id="test">
+        <source src="audios/Nutrition1.mp3">
+    </audio>
+
+    <audio id="equalizer" controls preload="metadata">
+        <source src="audios/Nutrition1.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- HTML -->
+    <audio id="MyAudioElement" autoplay>
+        <source src="audios/Nutrition1.mp3" type="audio/mp3">
+    </audio>
+
+{% endblock %}
