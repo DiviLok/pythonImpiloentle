@@ -5,9 +5,9 @@
   /* width: 100%; */
 }
 body{
- font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
-
-}
+  font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+ 
+ }
 
 #videos
 {
@@ -140,7 +140,7 @@ border-radius: 2rem;}
  } 
 }
 
-@media only screen and (min-width: 1000px)
+@media only screen and (min-width: 675px)
 /*Laptop*/ 
 { 
  .wrapper{      
@@ -195,9 +195,19 @@ border-radius: 2rem;}
    flex-direction: row;
    display: flex;
  } */
+
  #navbar {
    display: inline !important;
-   position: sticky;
+   position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 10vh;
+    background-color: #333;
+    justify-content: space-between;
+    color: #fff;
+    z-index: 999;
 
  }
  #navbar ul { 
@@ -208,9 +218,9 @@ border-radius: 2rem;}
    font-size: larger;
    font-weight: bold; 
    width: auto;
-   height: 4pc;
+   height: 10vh;
    background-color: #0e1612; 
-   padding: 1rem;
+   padding: 20px;
    
    } 
 
@@ -242,9 +252,9 @@ border-radius: 2rem;}
  padding-left: 3px;
  height: 8%;
 } */
-#navbar {
+/* #navbar {
  display: none;
-}
+} */
 .flex-container-div {
  display: flex;
  flex-direction: column;
@@ -285,6 +295,7 @@ border-radius: 2rem;}
 } 
 .bgimg{
  width: 100%;
+ height: 100%;
  position: fixed;
  opacity: 100%;
  z-index: 1;
@@ -292,8 +303,8 @@ border-radius: 2rem;}
 
 .mainvideobox a{
 
-   width: 327px;
-   height: 100px;
+   width: 30vw;
+   height: 12vhs;
    border-radius: 50px;
    /* background-color: antiquewhite; */
    /* border: 3px solid #194d33; */
@@ -301,11 +312,11 @@ border-radius: 2rem;}
    position: fixed;
    text-align: center;
    padding: 18px;
-   margin-top: 250px;
-   margin-left: 550px;
+   margin-top: 120px;
+   margin-left: 150px;
    z-index: 2;
    font-family: "Times New Roman", Times, serif;
-   font-size: 30px;
+   font-size: 2em;
    font-weight: bold;
    color: white;
    text-decoration: none;
@@ -323,7 +334,7 @@ border-radius: 2rem;}
   gap:2em;
   width: 100%; 
   height: 100%;
-  padding-top: 4rem;
+  padding-top:15vh;
 }
 
 .category-container img{
@@ -393,6 +404,7 @@ html {
 
 .about-section {
   padding: 50px;
+  margin-top: 40px;
   text-align: center;
   background-color: #474e5d;
   color: white;
