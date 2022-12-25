@@ -44,6 +44,9 @@ var languages = {
       }
   
       var fields = section.querySelectorAll("[data-field]");
+      if (window.NodeList && !NodeList.prototype.forEach) {
+        NodeList.prototype.forEach = Array.prototype.forEach;
+    }
       fields.forEach(function(el) {
         const type = el.getAttribute("data-field");
   
