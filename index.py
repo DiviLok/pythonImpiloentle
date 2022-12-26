@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 from werkzeug.utils import secure_filename
 from flask_wtf import FlaskForm
-from wtforms import FileField, SubmitField, StringField, TextAreaField, validators
+from wtforms import FileField, SubmitField, StringField, SelectField
 from wtforms.validators import InputRequired
 
 
@@ -20,7 +20,7 @@ app = Flask(__name__)
 # for upload video
 app.config['SECURET_KEY'] = 'supersecretkey'
 app.config['UPLOAD_FOLDER'] = 'static/files'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+# app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 # for upload video
 
 
@@ -82,25 +82,12 @@ def logout():
 # add video in the database/////////////////////////////////////////
 
 
-# @app.route('/add_video', methods=['POST'])
-# def add_new_video():
-#     form = cgi.FieldStorage()
-#     if form.validate_on_submit():
-#         category = form.getvalue('category')
-#         video_file = form.getfile('video_file')
-#         title = request.form['title']
-#         video_file = request.getfile["video-file"]
-#         video_file.save(os.path.join(os.path.abspath(os.path.dirname(
-#                 __file__)), app.config['UPLOAD_FOLDER'], secure_filename(video_file.filename)))  # Then save the file
-#         return "file is uploaded successfully"
-    #return render_template('/dashboard')
-
-
 # add file in upload file
 class uploadfileform(FlaskForm):
-   # title = StringField('title', [validators.DataRequired()])
-    title = StringField("Description")
+    title = StringField(label=("Description"))
     file = FileField("File", validators=[InputRequired()])
+    catregories = SelectField('Dropdown', 
+        choices=[('option1', 'Pregnancy'), ('option2', 'Nutrition'), ('option3', 'New Mother')])
     submit = SubmitField("Upload File")
 
     @app.route('/', methods=['GET', "POST"])
@@ -111,7 +98,7 @@ class uploadfileform(FlaskForm):
             file = form.file.data  # first grap the file
             file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
                   app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))  # Then save the file
-            return "File {form.title.data} has been uploaded."
+            return "File with {form.title.data} has been uploaded."
         return render_template('upload.html', form=form)
 
 
