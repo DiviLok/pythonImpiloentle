@@ -3,10 +3,25 @@ import hashlib
 import os
 import shutil
 from bs4 import BeautifulSoup
-import cgi
+#import cgi
+import urllib.request
+from werkzeug.utils import secure_filename
+from flask_wtf import FlaskForm
+from wtforms import FileField, SubmitField, StringField, TextAreaField, validators
+from wtforms.validators import InputRequired
+
+
+UPLOAD_FOLDER = 'static/uploads/'  # craete forlder for upload video
+
 
 app = Flask(__name__)
 # session.get('status', "false") = "false"
+
+# for upload video
+app.config['SECURET_KEY'] = 'supersecretkey'
+app.config['UPLOAD_FOLDER'] = 'static/files'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+# for upload video
 
 
 @app.route('/')
@@ -46,10 +61,10 @@ def pictures():
 
 @app.route('/dashboard')
 def dashboard():
-  if 'username' in session:
-    return render_template('dashboard.html', loggedin=session.get('status', "false"))
-  else:
-    return redirect('/loginpage')
+    if 'username' in session:
+        return render_template('dashboard.html', loggedin=session.get('status', "false"))
+    else:
+        return redirect('/loginpage')
 
 
 @app.route('/adminpage')
@@ -67,94 +82,88 @@ def logout():
 # add video in the database/////////////////////////////////////////
 
 
-videos = []  # Store the videos in a list
+# @app.route('/add_video', methods=['POST'])
+# def add_new_video():
+#     form = cgi.FieldStorage()
+#     if form.validate_on_submit():
+#         category = form.getvalue('category')
+#         video_file = form.getfile('video_file')
+#         title = request.form['title']
+#         video_file = request.getfile["video-file"]
+#         video_file.save(os.path.join(os.path.abspath(os.path.dirname(
+#                 __file__)), app.config['UPLOAD_FOLDER'], secure_filename(video_file.filename)))  # Then save the file
+#         return "file is uploaded successfully"
+    #return render_template('/dashboard')
 
 
-@app.route('/add_video', methods=['POST', 'GET'])
-def add_video():
-          
-  #  category=['category1' , 'category2' , 'category3']
-   source_path = "/videos"
-   soup = BeautifulSoup('dashboard.html', 'html.parser')
-   if request.method == 'POST':
-        # Get the form data
-###Has Error of getting data from form /////////
-        form = cgi.FieldStorage()
-        title = form.getvalue('title')
-        category = form.getvalue('category')
-        video_file = form.getfile('video_file')
-        # title = request.form['title']
-        # category = request.form['category']
-        # video_file = request.form['video_file']
-        option_tag = form.soup.find('option')
-        option_value = form.option_tag.get('value')
+# add file in upload file
+class uploadfileform(FlaskForm):
+   # title = StringField('title', [validators.DataRequired()])
+    file = FileField("File", validators=[InputRequired()])
+    submit = SubmitField("Upload File")
 
-###Has Error of getting data from form /////////
-        
-        if option_value == 'category1':
-           destination_path = '/videos/Intsholongwane ka gawulayo ukhulelwe (HIV)'
-           shutil.copy(source_path, destination_path)
-           video_file.save(os.path.join('prgnancyvideos.html', video_file.filename))
-           return render_template('prgnancyvideos.html', title=title)
+    @app.route('/', methods=['GET', "POST"])
+    @app.route('/upload', methods=['GET', "POST"])
+    def upload():
+        form = uploadfileform()
+        if form.validate_on_submit():
+            file = form.file.data  # first grap the file
+            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                  app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))  # Then save the file
+            return "File has been uploaded."
+        return render_template('upload.html', form=form)
 
-        elif  option_value == 'category2':
-           destination_path = 'videos/Nutrition'
-           shutil.copy(source_path, destination_path)
-           video_file.save(os.path.join('nutrition.html', video_file.filename))
 
-           # Add the video to the list
-        videos.append({
-            'title': title,
-            'category': category,
-            'filename': video_file.filename
-            })
-        return redirect ('/dashboard')
-   
-##ADD Video /////////////////////////////////////////////
- 
+# ADD Video /////////////////////////////////////////////
+
 
 def create_account(username, password):
-  # Hash the password
-  hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    # Hash the password
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
-  # Save the username and hashed password to a file
-  with open('credentials.txt', 'a') as f:
-    f.write(f'{username},{hashed_password}\n')
+    # Save the username and hashed password to a file
+    with open('credentials.txt', 'a') as f:
+        f.write(f'{username},{hashed_password}\n')
+
 
 app.secret_key = 'your secret key'
 
-def login(username, password):
-  # Hash the password
-  hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
-  # Check if the username and password match a stored credential
-  with open('credentials.txt', 'r') as f:
-    for line in f:
-      stored_username, stored_password = line.strip().split(',')
-      if stored_username == username and stored_password == hashed_password:
-        return True
-    return False
+def login(username, password):
+    # Hash the password
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+    # Check if the username and password match a stored credential
+    with open('credentials.txt', 'r') as f:
+        for line in f:
+            stored_username, stored_password = line.strip().split(',')
+            if stored_username == username and stored_password == hashed_password:
+                return True
+        return False
+
 
 @app.route('/loginpage')
 def loginpage():
-  msg = ""
-  if session.get('attempt') == "Failed":
-    msg = "Login attempt failed. Check your username/password"
-  return render_template('login.html',loggedin=session.get('status','false'), msg=msg)
+    msg = ""
+    if session.get('attempt') == "Failed":
+        msg = "Login attempt failed. Check your username/password"
+    return render_template('login.html', loggedin=session.get('status', 'false'), msg=msg)
+
 
 @app.route('/login', methods=['POST'])
 def loginform():
-  username = request.form['username']
-  password = request.form['password']
+    username = request.form['username']
+    password = request.form['password']
 
-  if login(username, password):
-     # Login successful
-    session['username'] = username
-    session['status'] = 'true'
-  
-  session['attempt'] = "Failed"
+    if login(username, password):
+       # Login successful
+        session['username'] = username
+        session['status'] = 'true'
 
-  return redirect('/dashboard')
+    session['attempt'] = "Failed"
+
+    return redirect('/dashboard')
+
 
 # Test the functions
 """ create_account('user1', 'password1')
@@ -167,5 +176,3 @@ print(login('wrong_username', 'password1'))  # False """
 
 if __name__ == '__main__':
     app.run()
-
-
