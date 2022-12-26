@@ -3,7 +3,7 @@ import hashlib
 import os
 import shutil
 from bs4 import BeautifulSoup
-#import cgi
+# import cgi
 import urllib.request
 from werkzeug.utils import secure_filename
 from flask_wtf import FlaskForm
@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 # for upload video
 app.config['SECURET_KEY'] = 'supersecretkey'
-app.config['UPLOAD_FOLDER'] = 'static/files'
+# app.config['UPLOAD_FOLDER'] = 'static/files'
 # app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 # for upload video
 
@@ -86,18 +86,31 @@ def logout():
 class uploadfileform(FlaskForm):
     title = StringField(label=("Description"))
     file = FileField("File", validators=[InputRequired()])
-    catregories = SelectField('Dropdown', 
-        choices=[('option1', 'Pregnancy'), ('option2', 'Nutrition'), ('option3', 'New Mother')])
+    Dropdown = SelectField('Dropdown',
+                           choices=[('option1', 'Pregnancy'), ('option2', 'Nutrition'), ('option3', 'New Mother')])
     submit = SubmitField("Upload File")
 
     @app.route('/', methods=['GET', "POST"])
     @app.route('/upload', methods=['GET', "POST"])
-    def upload():
+    def upload_file():
         form = uploadfileform()
         if form.validate_on_submit():
             file = form.file.data  # first grap the file
+        # Retrieve the selected option from the dropdown list
+            selected_option = form.Dropdown.data
+            # Determine the path where the file should be saved based on the selected option
+            if selected_option == 'option1':
+                # file_path = '/static/videos/Isifo sephepha (TB)'
+                app.config['UPLOAD_FOLDER'] = 'static/videos/Isifo sephepha (TB)'
+            elif selected_option == 'option2':
+                # file_path = '/static/videos/Nutrition'
+                app.config['UPLOAD_FOLDER'] = 'static/videos/Nutrition'
+            elif selected_option == 'option3':
+                # file_path = '/static/videos/Early Childhood'
+                app.config['UPLOAD_FOLDER'] = 'static/videos/Early Childhood'
+            # file.save(file_path)
             file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                  app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))  # Then save the file
+                app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))  # Then save the file
             return "File with {form.title.data} has been uploaded."
         return render_template('upload.html', form=form)
 
