@@ -99,6 +99,7 @@ def logout():
 # add file in upload file
 class uploadfileform(FlaskForm):
    # title = StringField('title', [validators.DataRequired()])
+    title = StringField("Description")
     file = FileField("File", validators=[InputRequired()])
     submit = SubmitField("Upload File")
 
@@ -110,7 +111,7 @@ class uploadfileform(FlaskForm):
             file = form.file.data  # first grap the file
             file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
                   app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))  # Then save the file
-            return "File has been uploaded."
+            return "File {form.title.data} has been uploaded."
         return render_template('upload.html', form=form)
 
 
