@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, redirect, session
 import hashlib
 import os
-import shutil
-from bs4 import BeautifulSoup
+# import shutil
+#from bs4 import BeautifulSoup
 # import cgi
-import urllib.request
+# import urllib.request
 from werkzeug.utils import secure_filename
 from flask_wtf import FlaskForm
 from wtforms import FileField, SubmitField, StringField, SelectField
@@ -90,30 +90,33 @@ class uploadfileform(FlaskForm):
                            choices=[('option1', 'Pregnancy'), ('option2', 'Nutrition'), ('option3', 'New Mother')])
     submit = SubmitField("Upload File")
 
-    @app.route('/', methods=['GET', "POST"])
+    # @app.route('/', methods=['GET', "POST"])
     @app.route('/upload', methods=['GET', "POST"])
     def upload_file():
         form = uploadfileform()
-        if form.validate_on_submit():
+        if 'username' in session:
+          if form.validate_on_submit():
             file = form.file.data  # first grap the file
         # Retrieve the selected option from the dropdown list
             selected_option = form.Dropdown.data
             # Determine the path where the file should be saved based on the selected option
             if selected_option == 'option1':
                 # file_path = '/static/videos/Isifo sephepha (TB)'
-                app.config['UPLOAD_FOLDER'] = 'static/videos/Isifo sephepha (TB)'
+                app.config['UPLOAD_FOLDER'] = 'static/videos/Isifo_sephepha (TB)'
             elif selected_option == 'option2':
                 # file_path = '/static/videos/Nutrition'
                 app.config['UPLOAD_FOLDER'] = 'static/videos/Nutrition'
             elif selected_option == 'option3':
                 # file_path = '/static/videos/Early Childhood'
-                app.config['UPLOAD_FOLDER'] = 'static/videos/Early Childhood'
+                app.config['UPLOAD_FOLDER'] = 'static/videos/Early_Childhood'
             # file.save(file_path)
             file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
                 app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))  # Then save the file
-            return "File with {form.title.data} has been uploaded."
-        return render_template('upload.html', form=form)
-
+            # return "File with {form.title.data} has been uploaded."
+          return render_template('upload.html', form=form, loggedin=session.get('status', "false"))
+        else:
+           return redirect('/loginpage')
+        
 
 # ADD Video /////////////////////////////////////////////
 
@@ -163,7 +166,7 @@ def loginform():
 
     session['attempt'] = "Failed"
 
-    return redirect('/dashboard')
+    return redirect('/upload')
 
 
 # Test the functions
