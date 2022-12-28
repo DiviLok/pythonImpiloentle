@@ -1,3 +1,12 @@
+@media only screen and (max-width: 768px)
+/*Ipad*/
+{
+  .add-video-form{
+    width: 95%;
+  }
+
+}
+
 /* CSS styles */
 .add-video-form {
   display: flex;
@@ -10,6 +19,9 @@
   border-radius: 5px;
   background-color: #728eb7;
   padding: 20px;
+}
+.add-video-form div{
+  margin-top: 0.3em;
 }
 
 .add-video-form label {
@@ -32,7 +44,7 @@
   background-color: white;
 }
 
-.add-video-form button[type="submit"] {
+.add-video-form input[type="submit"] {
   width: 7rem;
   margin-top: 1em;
   padding: 0.5em 1em;
@@ -45,7 +57,7 @@
   cursor: pointer;
 }
 
-.add-video-form button[type=submit]:hover {
+.add-video-form input[type=submit]:hover {
   background-color: #0a182d;
 }
 

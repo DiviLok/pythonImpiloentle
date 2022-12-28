@@ -1,13 +1,15 @@
 {% extends 'navbar.html' %}
 {% block content %}
+
     <form method='POST' enctype='multipart/form-data' class="add-video-form" action="/upload">
         <p>Upload the video file here based on the category</p>
-        {{form.csrf_token()}}
-        {{form.title.label}}
-        {{form.title}}
-        {{form.hidden_tag()}}
-        {{form.file()}}
-        {{form.Dropdown}}
-        {{form.submit()}}
+        <div>{{form.csrf_token()}}</div>
+        <div>{{form.title.label}}</div>
+        <div>{{form.title}}</div>
+        <div>{{form.hidden_tag()}}</div>
+        <div> {{form.file()}}</div>
+        <div>{{form.Dropdown}}</div>
+        <div> {{form.submit()}}</div>    
     </form>
+
 {% endblock %}
