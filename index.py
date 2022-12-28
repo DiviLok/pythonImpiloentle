@@ -34,7 +34,6 @@ def catergories():
     return render_template('categories.html', loggedin=session.get('status', "false"))
 
 # dynamically fetch videos based on category
-
 def get_videos(category):
   base_dir = "/static/videos"
   category_dir = os.path.join(base_dir,category)
