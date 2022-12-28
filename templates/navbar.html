@@ -24,7 +24,6 @@
 <body>
    <section style="display: none;" class="main" lang="xh">
 
-
       <div id="navbar" class="main">
          <ul>
             <li><a data-field="Home" class="active" href="/"></a></li>
@@ -32,7 +31,7 @@
             <li><a data-field="Pictures" href="/pictures"></a></li>
             <li><a data-field="About" href="/about"></a></li>
             {% if loggedin == "true" %}
-            <li><a data-field="Dashboard" href="/upload"></a></li>
+            <li><a href="/upload"></a></li>
             <li><a data-field="Logout" class="float-right" href="/logout">logout</a></li>
             {% endif %}
             {% if loggedin == "false" %}
@@ -43,9 +42,39 @@
          </ul>
 
       </div>
+
+      <!--Navbar for mobile and tablet - Small size scree-->
+      <div class="flex-container-search">
+         <div class="dropdown">
+            <button class="dropbtn">
+               <img class="img-menu" src="/static/images/white-circled-menu-icon.png" alt="menu/">
+            </button>
+            <div class="dropdown-content">
+               <a data-field="Home" class="active" href="/"></a>
+               <a data-field="Videos" href="/videos"></a>
+               <a data-field="Pictures" href="/pictures"></a>
+               <a data-field="About" href="/about"></a>
+            </div>
+            
+               <button id="changeLanguageID" class="changeLanguage-pad" type="button">Change language</button>
+         </div>
+         <div id="loginID" class="dashboard">
+            {% if loggedin == "true" %}
+            <a href="/upload"></a>
+            <a data-field="Logout" href="/logout">logout</a>
+            {% endif %}
+            {% if loggedin == "false" %}
+            <a data-field="Login" href="/loginpage"></a>
+            {% endif %}
+         </div>
+
+      </div>
+
       <div class="content">
          {% block content %}{% endblock %}
       </div>
+
+      <!--Navbar is compacted for small screen-->
 
 
    </section>
