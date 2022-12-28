@@ -278,11 +278,32 @@ body {
 
   
 }
-
-
+@media only screen and (min-width: 1000px)
+/* Laptop */
+{
+  .mainvideobox {
+    width: 20%;
+    height: 15vh;
+  }
+  
+}
+@media only screen and (max-width: 480px)
+/* Mobile phones */
+{
 .mainvideobox {
-  width: 30%;
+  width: 90%;
   height: 20vh;
+}
+
+}
+@media only screen and (min-width: 764px)
+/* Ipad or Tablet */
+{
+.mainvideobox {
+  width: 40%;
+  height: 13vh;
+}}
+.mainvideobox {
   border-radius: 50px;
   /* background-color: antiquewhite; */
   /* border: 3px solid #194d33; */
@@ -309,6 +330,7 @@ body {
   color: #2d7a86;
   border: 3px solid #ecf9f2;
 }
+
 
 
 
