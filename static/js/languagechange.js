@@ -66,9 +66,8 @@ var languages = {
         isButtonBlocked = false;
       }, 500);
     };
-  
-    var changeBtn = document.querySelector("button.change-language" || "button.changeLanguage-pad");
-    changeBtn.onclick = function() {
+
+    var changeLanguage = function() {
       if (isButtonBlocked) {
         return;
       }
@@ -84,9 +83,18 @@ var languages = {
       //section.style.direction = "ltr"
       document.cookie = "lang_cookie=en";
       updateLayout();
+    }
+   //change language on laptops
+    var changeBtn = document.querySelector("button.change-language")
+    changeBtn.onclick = function() {
+      changeLanguage();
+    };
+    //change language on mobile and Ipads
+    var changeBtnMobile = document.querySelector("button.change-language-pad")
+    changeBtnMobile.onclick = function() {
+      changeLanguage();
     };
     section.style.display='inline';
-    //section.style.display = 'block';
     updateLayout();
 
     onload = function(){
