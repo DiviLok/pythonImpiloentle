@@ -7,23 +7,12 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  /*margin: 0;*/
 }
 
-/* body{
-  @font-face {
-    font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
-    src: url();
-  }
-  font-family: Arial,Helvetica Neue,Helvetica,Tahoma,Trebuchet MS,Times New Roman,sans-serif,
-  Georgia,Garamond,serif,Courier New,monospace;
- 
- } */
 
 #videos {
   width: 96%;
   display: block;
-  /*margin-left: 5px;*/
   margin-left: 2%;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -33,6 +22,7 @@ body {
   width: 95%;
   background-color: #cfcff8;
   border-radius: 2%;
+  margin: 2%;
   margin-top: 2%;
   left: 2%;
   position: relative;
@@ -116,7 +106,7 @@ body {
 @media only screen and (min-width: 768px)
 /*Ipad*/
 
-{
+  {
   .wrapper {
     width: 600px;
 
@@ -143,22 +133,36 @@ body {
     border: none;
     cursor: pointer;
   }
+
+  .video-container {
+    width: 123.5% !important;
+    margin: 2%!important;
+  }
+
   .parent-div {
     /* box-shadow: 0 0 2px 2px #147079;  
    border: solid #216066 1px; */
     width: 123.5%;
   }
-  .illnessText {
-    font-size: 20px !important;
-  }
-.mainvideobox{
-  width: 90%;
 
-}
-.category-container img{
-  margin-left: 25%;
-}
-  
+  .illnessText {
+    font-size: 26px !important;
+  }
+
+  .mainvideobox {
+    width: 90%;
+
+  }
+
+  .category-container img {
+    margin-left: 25%;
+  }
+
+  .mainvideobox {
+    width: 40%;
+    height: 13vh;
+  }
+
 }
 
 @media only screen and (min-width: 1000px)
@@ -169,6 +173,11 @@ body {
     width: 95%;
   }
 
+  .video-container {
+    width: 44%!important;
+    margin: 2%!important;
+  }
+
   .parent-div {
     width: 45%;
     position: relative;
@@ -177,7 +186,6 @@ body {
 
   .flex-container-div {
     flex-direction: row !important;
-
     flex-wrap: wrap;
     justify-content: space-between;
   }
@@ -277,32 +285,28 @@ body {
     background-color: #728eb7;
     border-radius: 1rem;
   }
-}
-@media only screen and (min-width: 1000px)
-/* Laptop */
-{
   .mainvideobox {
     width: 20%;
     height: 15vh;
   }
-  
-}
-@media only screen and (max-width: 480px)
-/* Mobile phones */
-{
-.mainvideobox {
-  width: 90%;
-  height: 20vh;
 }
 
+
+
+@media only screen and (max-width: 480px)
+/* Mobile phones */
+  {
+  .mainvideobox {
+    width: 90%;
+    height: 20vh;
+  }
+  .video-container {
+    width: 123.5%!important;
+    margin: 1%!important;
+  }
+
 }
-@media only screen and (min-width: 764px)
-/* Ipad or Tablet */
-{
-.mainvideobox {
-  width: 40%;
-  height: 13vh;
-}}
+
 
 .mainvideobox {
   display: block;
@@ -373,6 +377,7 @@ body {
   font-weight: bold;
   margin-left: 2%;
   padding-bottom: 1%;
+  padding-left: 1%;
 }
 
 .downloadButton {
@@ -384,11 +389,7 @@ body {
   position: relative;
   left: 15%;
   border: none;
-  background-color: lightblue;
-  /* color: rgb(16, 12, 12);
-  padding: 12px 30px;
-  cursor: pointer;
-  font-size: 20px; */
+  background-color: #cfcff8;
 
 }
 
@@ -438,7 +439,8 @@ body {
 }
 
 .downloadBtnPos:hover {
-  background-color: RoyalBlue;
+  background-color: #b3b3da;
+  border-radius: 30px;
 }
 
 .bgimg {
@@ -568,4 +570,23 @@ html {
 .text-fit>* {
   font-size: 16px;
   line-height: 1.2;
+}
+
+
+
+.parent-video-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+.video-container {
+  text-align: center;
+  width: 44%;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 2%;
+  background-color: #cfcff8;
+  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
 }

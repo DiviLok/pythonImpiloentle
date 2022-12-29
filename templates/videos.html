@@ -1,16 +1,41 @@
 {% extends 'navbar.html' %}
 {% block content %}
+
+<div class="parent-video-container">
+{% for video in videos %}
+<div class="video-container">
+   <video id="videos" type="video/mp4" src="{{video.src}}" title="{{video.title}}" controls></video>
+   <div class="flex-container-icon">
+      <p class="illnessText">{{video.title}}</p>
+   </div>
+   <div class="flex-container-icon">
+      <button class="downloadBtnPos"><a href="{{video.src}}" download="{{video.title}}"></a>
+         <img id="downloadButton" src="/static/images/icons-download.png" />
+         <i data-field="Download"></i></a></button>
+   </div>
+   </div>
+  
+{% endfor %}
+</div>
+
+
+
+<!-- <div class="wrapper flex-container-div">
 <div id="videos">
    {% for video in videos %}
    <div class="parent-div">
       <div>
          <video id="videos" type="video/mp4" src="{{video.src}}" title="{{video.title}}" controls></video>
-         <p class="illnessText text-fit">{{video.title}}</p>
-         <button class="downloadBtnPos" style="width:100%"><a href="{{video.src}}" download="{{video.title}}" >
-            <!-- <img id="downloadButton" src="/static/images/download.png" /> -->
-            <i class="fa fa-download" data-field="Download"></i></a></button>
+         <p class="illnessText">{{video.title}}</p>
+         <div class="flex-container-icon">
+            <button class="downloadBtnPos"><a href="{{video.src}}" download="{{video.title}}" ></a>
+             <img id="downloadButton" src="/static/images/download.png" /> 
+            <i data-field="Download"></i></a></button>
+         </div>
       </div>
    </div>
    {% endfor %}
 </div>
+</div> -->
+
 {% endblock %}
