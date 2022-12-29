@@ -67,7 +67,7 @@ var languages = {
       }, 500);
     };
   
-    var changeBtn = document.querySelector("button.change-language");
+    var changeBtn = document.querySelector("button.change-language" || "button.changeLanguage-pad");
     changeBtn.onclick = function() {
       if (isButtonBlocked) {
         return;

@@ -81,15 +81,16 @@ def dashboard():
         return redirect('/loginpage')
 
 
-@app.route('/adminpage')
+""" @app.route('/adminpage')
 def adminpage():
     return render_template('adminpage.html', loggedin=session.get('status', "false"))
-
+ """
 
 @app.route('/logout')
 def logout():
     # Remove the session ID
     session['status'] = 'false'
+    session['attempt'] = "loggedout"
     session.pop('username', None)
     return redirect('/loginpage')
 
@@ -181,13 +182,15 @@ def loginpage():
 def loginform():
     username = request.form['username']
     password = request.form['password']
+    session['attempt']="notStarted"
 
     if login(username, password):
        # Login successful
         session['username'] = username
         session['status'] = 'true'
-
-    session['attempt'] = "Failed"
+        session['attempt'] = "Success"
+    else:
+        session['attempt'] = "Failed"
 
     return redirect('/upload')
 
