@@ -38,7 +38,7 @@
             <li><a data-field="Login" class="float-right" href="/loginpage"></a></li>
             {% endif %}
             <!-- <li><a class="float-right" href="/adminpage">AdminPage</a></li> -->
-            <li><button class="change-language" type="button">Change language</button></li>
+            <li><button data-field="ChangeLanguage" class="change-language" type="button">Change language</button></li>
          </ul>
 
       </div>
@@ -56,11 +56,11 @@
                <a data-field="About" href="/about"></a>
             </div>
             
-               <button id="changeLanguageID" class="change-language-pad" type="button">Change language</button>
+               <button data-field="ChangeLanguage" id="changeLanguageID" class="change-language-pad" type="button">Change language</button>
          </div>
          <div id="loginID" class="dashboard">
             {% if loggedin == "true" %}
-            <a href="/upload"></a>
+            <a data-field="Upload" href="/upload"></a>
             <a data-field="Logout" href="/logout">logout</a>
             {% endif %}
             {% if loggedin == "false" %}
