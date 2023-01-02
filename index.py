@@ -41,8 +41,6 @@ def get_videos(category):
   return videos
   # return render_template('nutrition.html', loggedin=session.get('status', "false"))
 
-
-
 # display the returned listed videos from get_videos
 @app.route("/videos/<category>")
 def show_videos(category):
@@ -72,13 +70,13 @@ def about():
 def pictures():
     return render_template('pictures.html', loggedin=session.get('status', "false"))
 
-
-@app.route('/dashboard')
+""" 
+@app.route('/uploadvideo')
 def dashboard():
     if 'username' in session:
-        return render_template('dashboard.html', loggedin=session.get('status', "false"))
+        return render_template('upload.html', loggedin=session.get('status', "false"))
     else:
-        return redirect('/loginpage')
+        return redirect('/loginpage') """
 
 
 """ @app.route('/adminpage')
