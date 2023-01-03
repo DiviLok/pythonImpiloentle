@@ -1,0 +1,11 @@
+[Unit]
+Description=Impiliontle
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/impilointle
+ExecStart=/bin/sh start.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
