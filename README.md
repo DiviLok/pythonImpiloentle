@@ -1,3 +1,40 @@
+# Impilointle Project
+
+This is a project created by University West to help undeserved communities in South Africa with basic health information
+
+## Requirements
+
+> Internet is required during initial setup to install python dependencies. After installation, the application can run without an active internet connection
+
+python 3.7+
+
+## Technical information
+
+Project is a simple python flask based application to display videos
+
+## Installation steps
+
+Running the setup.sh script will do all necessary steps to install the application, its dependencies and setup the application as a service.
+
+Application will auto restart if the linux machine (raspberryPi) is restarted. No maintenance is required
+
+### Linux
+```bash
+# Run the setup script to setup and install the project as a service
+sh setup.sh
+
+# To view status of service run below command
+systemctl status impilointle
+
+# To restart the service run below command
+sudo systemctl restart impilointle
+
+# To see logs run below command
+journalctl -f
+# These are flowing logs, press cntrl+C to exit logs
+```
+
+## Project Tree
 
 ```
 pythonImpiloentle
