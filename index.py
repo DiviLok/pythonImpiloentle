@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
 import hashlib
 import os
+import subprocess
+import ffmpeg
 # import shutil
 #from bs4 import BeautifulSoup
 # import cgi
@@ -131,6 +133,12 @@ class uploadfileform(FlaskForm):
                 app.config['UPLOAD_FOLDER'] = 'static/videos/eatwellandsavemoney'
             elif selected_option == 'option8':
                 app.config['UPLOAD_FOLDER'] = 'static/videos/immunization'
+
+            #Compress Video
+            def compress_video(input_file, output_file):
+                command = ['ffmpeg', '-i', input_file, '-vcodec', 'h264', '-acodec', 'aac', '-strict', '-2', output_file]
+                subprocess.run(command)
+            
             # file.save(file_path)
             file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
                 app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))  # Then save the file
@@ -140,7 +148,7 @@ class uploadfileform(FlaskForm):
            return redirect('/loginpage')
         
 
-# ADD Video /////////////////////////////////////////////
+# #######################################################
 
 
 def create_account(username, password):
