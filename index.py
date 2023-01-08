@@ -135,6 +135,7 @@ class uploadfileform(FlaskForm):
                 app.config['UPLOAD_FOLDER'] = 'static/videos/immunization'
 
             #Compress Video
+            #reference to install ffmpeg: https://phoenixnap.com/kb/ffmpeg-windows
             def compress_video(input_file, output_file):
                 command = ['ffmpeg', '-i', input_file, '-vcodec', 'h264', '-acodec', 'aac', '-strict', '-2', output_file]
                 subprocess.run(command)
