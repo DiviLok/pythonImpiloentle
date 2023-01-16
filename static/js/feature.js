@@ -1,44 +1,12 @@
-{
-    console.log("test the file");
-
-    let language = window.navigator.language;
-    // var lang= document.getElementById("demo").innerHTML = "Browser language: " + language;
-    //alert(language);
-
-    (function () {
-        console.log("test the file");
-
-        var currentLanguage;
-        var section = document.querySelector("section.languagemain");
-        var updateLayout = function () {
-            currentLanguage = section.getAttribute("lang").toLowerCase();
-            section.classList.add(currentLanguage === language ? 'section-anim-rtl' : 'section-anim');
-            console.log("test the file");
-
+function sendMessage() {
+    var message = document.getElementById("message").value;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("message").value = "";
         }
-
-    })
-
-};
-
-{
-    var vid = document.getElementById("bgvid");
-    if (window.matchMedia('(prefers-reduced-motion)').matches) {
-        vid.removeAttribute("autoplay");
-        vid.pause();
-        pauseButton.innerHTML = "Paused";
-    }
-    
-    function vidFade() {
-      vid.classList.add("stopfade");
-    }
-    
-    vid.addEventListener('ended', function()
-    {
-    // only functional if "loop" is removed 
-    vid.pause();
-    // to capture IE10
-    vidFade();
-    }); 
+    };
+    xhttp.open("POST", "/send", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("message=" + message);
 }
-

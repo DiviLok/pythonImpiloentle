@@ -3,6 +3,7 @@ import hashlib
 import os
 import subprocess
 import ffmpeg
+import json
 # import shutil
 #from bs4 import BeautifulSoup
 # import cgi
@@ -209,6 +210,24 @@ create_account('user2', 'password2')
 print(login('user1', 'password1'))  # True
 print(login('user1', 'wrong_password'))  # False
 print(login('wrong_username', 'password1'))  # False """
+
+#chatBox
+@app.route("/chat")
+def chat():
+    return render_template("chat.html")
+@app.route("/send", methods=["POST"])
+def send():
+    message = request.form["message"]
+    with open("messages.txt", "a") as file:  #save file in a text file
+        file.write(message + "\n")
+    # with open("messages.json", "r") as file: #save chat as a json file
+    #     messages = json.load(file)
+    # messages.append(message)
+    # with open("messages.json", "w") as file:
+    #     json.dump(messages, file)
+    return "success"
+
+
 
 if __name__ == '__main__':
     app.run()
