@@ -1,3 +1,8 @@
+let sasufUrl = "https://www.sasuf.org";
+let williamJobeEmail = "william.jobe@hv.se";
+let linneaStansertEmail = "linnea.stansert@gmail.com";
+let karlLeRouxEmail = "karlleroux@gmail.com";
+
 var languages = {
     en: {
         Home: "Home",
@@ -13,6 +18,7 @@ var languages = {
         Dashboard:"Dashboard",
         Download:"Download",
         ChangeLanguage:"Change Language",
+        Chat: "Chat",
         About_1: "The Philani Maternal, Child Health and Nutrition Trust has been addressing maternal, child health and nutrition problems in the informal settlements surrounding Cape Town since 1979. Philani's mandate is sustainable community health, and, over the years, we have developed programmes to meet the needs of the communities we serve. As an organisation we aim to improve health outcomes by combining our skills and resources with the knowledge and resources that exist in the community.",
         about3:"Contact us",
        /*  about4: "to distribute health information made by students (Divya Jagannatha and Tahere Roshanzade) and ",
@@ -32,6 +38,7 @@ var languages = {
         Upload:"LayishaIividiyo",
         Download:"Khuphela",
         ChangeLanguage:"Tshintsha Ulwimi",
+        Chat: "Chat",
         Download_Videos_Here: "Khuphela iividiyo apha",
         About_1: "I-Philani Maternal, Child Health and Nutrition Trust ibilungisa iingxaki zoomama, impilo yabantwana kunye nesondlo kumatyotyombe angqonge iKapa ukusukela ngo-1979. Umyalelo kaPhilani yimpilo yoluntu ezinzileyo, kwaye, ekuhambeni kweminyaka, siye saqulunqa iinkqubo zokuhlangabezana neemfuno zoluntu esilusebenzelayo. Njengombutho sijolise ekuphuculeni iziphumo zempilo ngokudibanisa izakhono kunye nezibonelelo zethu kunye nolwazi kunye nezibonelelo ezikhoyo kuluntu.",
         About_2: "Esi sicelo sewebhu sisifundo esilingwayo esixhaswa ngemali ngu <a href=\"https://www.sasuf.org/\">SASUF</a> ukusasaza ulwazi lwezempilo olwenziwe ngabafundi (Divya Jagannatha and Tahere Roshanzade) kwaye <a href=\"mailto:william.jobe@hv.se\">Dr. William Jobe</a> kwiYunivesithi yaseWest Trollhättan, Sweden njengenxalenye yeprojekthi yophando ekhokelwa Stellenbosch University ngentsebenziswano ne <a href=\"mailto:linnea.stansert@gmail.com\">Linnea Stansert Katzen</a> kwaye <a href=\"mailto:karlleroux@gmail.com\">Dr. Karl Le Roux</a>. Nceda uzive ukhululekile ukuqhagamshelana nabani na kuthi ngemibuzo kunye/okanye izimvo.",

@@ -1,0 +1,10 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<div id="chat-box">
+    <div id="messages"></div>
+    <form onsubmit="sendMessage(); return false;">
+        <input type="text" id="message">
+        <input type="submit" value="Send">
+    </form>
+</div>
+{% endblock %}
