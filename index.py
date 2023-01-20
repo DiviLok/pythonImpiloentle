@@ -14,7 +14,7 @@ from wtforms.validators import InputRequired
 
 
 UPLOAD_FOLDER = 'static/uploads/'  # craete forlder for upload video
-
+Output_videofile = 'static/uploads/'
 
 app = Flask(__name__)
 # session.get('status', "false") = "false"
@@ -38,7 +38,7 @@ def catergories():
 # dynamically fetch videos based on category
 def get_videos(category):
   base_dir = "/static/videos"
-  category_dir = os.path.join(base_dir,category)
+  category_dir = base_dir + "/" + category
   videos = os.listdir(os.path.abspath(".") + "/" + category_dir)
   return videos
   # return render_template('nutrition.html', loggedin=session.get('status', "false"))
@@ -47,17 +47,16 @@ def get_videos(category):
 @app.route("/videos/<category>")
 def show_videos(category):
   list_of_videos = get_videos(category)
-  videos = create_video_dictionary(list_of_videos)
- # print(videos)
+  videos = create_video_dictionary(list_of_videos, category)
   return render_template("videos.html", videos=videos,loggedin=session.get('status', "false"))
 
   # creating dictionary videos for the list of videos 
-def create_video_dictionary(videos):
+def create_video_dictionary(videos, category):
   result = []
   for video in videos:
     result.append(
       {
-        "src": "/static/videos/" + video,
+        "src": "/static/videos/" + category + "/" + video,
         "title": video.split(".")[0] # split title of the video
       }
     )
@@ -134,15 +133,13 @@ class uploadfileform(FlaskForm):
             elif selected_option == 'option8':
                 app.config['UPLOAD_FOLDER'] = 'static/videos/immunization'
 
-            #Compress Video
-            #reference to install ffmpeg: https://phoenixnap.com/kb/ffmpeg-windows
-            def compress_video(input_file, output_file):
-                command = ['ffmpeg', '-i', input_file, '-vcodec', 'h264', '-acodec', 'aac', '-strict', '-2', output_file]
-                subprocess.run(command)
-            
+                  
             # file.save(file_path)
-            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))  # Then save the file
+            full_file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                 app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
+            file.save(full_file_path)  # Then save the file
+            """ Output_videofile = full_file_path + 'compressed'
+            compress_video(full_file_path,Output_videofile) """
             # return "File with {form.title.data} has been uploaded."
           return render_template('upload.html', form=form, loggedin=session.get('status', "false"))
         else:
@@ -151,6 +148,11 @@ class uploadfileform(FlaskForm):
 
 # #######################################################
 
+ #Compress Video
+            #reference to install ffmpeg: https://phoenixnap.com/kb/ffmpeg-windows
+def compress_video(input_file, output_file):
+    command = ['ffmpeg', '-i', input_file, '-vcodec', 'h264', '-acodec', 'aac', '-strict', '-2', output_file]
+    subprocess.run(command)
 
 def create_account(username, password):
     # Hash the password
