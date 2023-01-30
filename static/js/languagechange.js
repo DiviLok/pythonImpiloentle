@@ -24,7 +24,7 @@ var languages = {
        /*  about4: "to distribute health information made by students (Divya Jagannatha and Tahere Roshanzade) and ",
         about5:"at University West in Trollhättan, Sweden as part of a research project headed by Stellenbosch University in cooperation with",
         about6:"Please feel free to contact any of us with questions and/or comments.", */
-        About_2: "This web application is a pilot study financed by SASUF to distribute health information made by students (Divya Jagannatha and Tahere Roshanzade) and Dr. William Jobe at University West in Trollhättan, Sweden as part of a research project headed by Stellenbosch University in cooperation with Linnea Stansert Katzen and Dr. Karl Le Roux. Please feel free to contact any of us with questions and/or comments.",
+        About_2: "This web application is a pilot study financed by 'SASUF' to distribute health information made by students (Divya Jagannatha and Tahere Roshanzade) and 'Dr. William Jobe' at University West in Trollhättan, Sweden as part of a research project headed by Stellenbosch University in cooperation with 'Linnea Stansert Katzen' and 'Dr. Karl Le Roux'. Please feel free to contact any of us with questions and/or comments.",
     },
     xh: {
         Home: "Ekhaya",
@@ -41,8 +41,8 @@ var languages = {
         Chat: "Chat",
         Download_Videos_Here: "Khuphela iividiyo apha",
         About_1: "I-Philani Maternal, Child Health and Nutrition Trust ibilungisa iingxaki zoomama, impilo yabantwana kunye nesondlo kumatyotyombe angqonge iKapa ukusukela ngo-1979. Umyalelo kaPhilani yimpilo yoluntu ezinzileyo, kwaye, ekuhambeni kweminyaka, siye saqulunqa iinkqubo zokuhlangabezana neemfuno zoluntu esilusebenzelayo. Njengombutho sijolise ekuphuculeni iziphumo zempilo ngokudibanisa izakhono kunye nezibonelelo zethu kunye nolwazi kunye nezibonelelo ezikhoyo kuluntu.",
-        About_2: "Esi sicelo sewebhu sisifundo esilingwayo esixhaswa ngemali ngu <a href=\"https://www.sasuf.org/\">SASUF</a> ukusasaza ulwazi lwezempilo olwenziwe ngabafundi (Divya Jagannatha and Tahere Roshanzade) kwaye <a href=\"mailto:william.jobe@hv.se\">Dr. William Jobe</a> kwiYunivesithi yaseWest Trollhättan, Sweden njengenxalenye yeprojekthi yophando ekhokelwa Stellenbosch University ngentsebenziswano ne <a href=\"mailto:linnea.stansert@gmail.com\">Linnea Stansert Katzen</a> kwaye <a href=\"mailto:karlleroux@gmail.com\">Dr. Karl Le Roux</a>. Nceda uzive ukhululekile ukuqhagamshelana nabani na kuthi ngemibuzo kunye/okanye izimvo.",
-        about3:"This web application is a pilot study financed by"
+        About_2: "Esi sicelo sewebhu sisifundo esilingwayo esixhaswa ngemali ngu 'SASUF' ukusasaza ulwazi lwezempilo olwenziwe ngabafundi (Divya Jagannatha and Tahere Roshanzade) kwaye 'Dr. William Jobe' kwiYunivesithi yaseWest Trollhättan, Sweden njengenxalenye yeprojekthi yophando ekhokelwa Stellenbosch University ngentsebenziswano ne 'Linnea Stansert Katzen' kwaye 'Dr. Karl Le Roux'. Nceda uzive ukhululekile ukuqhagamshelana nabani na kuthi ngemibuzo kunye/okanye izimvo.",
+        about3:"Contact us"
       }
   };
   
