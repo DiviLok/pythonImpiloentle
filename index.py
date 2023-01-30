@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, jsonify
+from flask import Flask, render_template, request, redirect, session, url_for, jsonify
 import hashlib
 import os
 import subprocess
@@ -12,10 +12,11 @@ from werkzeug.utils import secure_filename
 from flask_wtf import FlaskForm
 from wtforms import FileField, SubmitField, StringField, SelectField
 from wtforms.validators import InputRequired
-
+from compress_video1 import compress_video
 
 UPLOAD_FOLDER = 'static/uploads/'  # craete forlder for upload video
 Output_videofile = 'static/uploads/'
+
 
 app = Flask(__name__)
 # session.get('status', "false") = "false"
@@ -38,9 +39,13 @@ def catergories():
 
 # dynamically fetch videos based on category
 def get_videos(category):
-  base_dir = "/static/videos"
-  category_dir = base_dir + "/" + category
+  category_dir = "/static/videos/" + category
   videos = os.listdir(os.path.abspath(".") + "/" + category_dir)
+#   compress_videos = []
+#   for url in videos:
+#       if url.endswith("cps_.mp4"):
+#           compress_videos.append(url)
+#   return compress_videos
   return videos
   # return render_template('nutrition.html', loggedin=session.get('status', "false"))
 
@@ -95,6 +100,7 @@ def logout():
     return redirect('/loginpage')
 
 # upload videos in appropriate folders/////////////////////////////////////////
+# app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 /////#compress the video
 class uploadfileform(FlaskForm):
     title = StringField(label=("Description"))
     file = FileField("File", validators=[InputRequired()])
@@ -139,21 +145,31 @@ class uploadfileform(FlaskForm):
             full_file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                  app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
             file.save(full_file_path)  # Then save the file
-            """ Output_videofile = full_file_path + 'compressed'
-            compress_video(full_file_path,Output_videofile) """
+            
+            file_name = compress_video(full_file_path, 5 * 1000)
+            print(file_name)
+            #Compress Video
+            #reference to install ffmpeg: https://phoenixnap.com/kb/ffmpeg-windows
+            
+            # os.system('ffmpeg -i full_file_path' + file.filename + 
+            #           ' -vcodec libx264 -crf 20 full_file_path/compressed_' + file.filename)
+            
+
+            # subprocess.call(['ffmpeg', '-i', 'full_file_path' + file.filename, 
+            #                  '-vcodec', 'libx264', '-crf', '20', 'full_file_path/compressed_' + file.filename])
+
+            # return redirect(url_for('uploaded_file', filename='compressed_' + file.filename))
+
             # return "File with {form.title.data} has been uploaded."
           return render_template('upload.html', form=form, loggedin=session.get('status', "false"))
         else:
            return redirect('/loginpage')
         
 
+
 # #######################################################
 
- #Compress Video
-            #reference to install ffmpeg: https://phoenixnap.com/kb/ffmpeg-windows
-def compress_video(input_file, output_file):
-    command = ['ffmpeg', '-i', input_file, '-vcodec', 'h264', '-acodec', 'aac', '-strict', '-2', output_file]
-    subprocess.run(command)
+
 
 def create_account(username, password):
     # Hash the password

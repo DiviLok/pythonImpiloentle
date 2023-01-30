@@ -82,6 +82,6 @@ def compress_video(video_full_path, size_upper_bound, two_pass=True, filename_su
         print('You can install ffmpeg by reading https://github.com/kkroening/ffmpeg-python/issues/251')
         return False
 
-if __name__ == '__main__':
-    file_name = compress_video('input.mp4', 50 * 1000)
-    print(file_name)
+# if __name__ == '__main__':
+#     file_name = compress_video('input.mp4', 50 * 1000)
+#     print(file_name)
